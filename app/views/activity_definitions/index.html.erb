@@ -12,7 +12,7 @@
 <% @activity_definitions.each do |activity_definition| %>
   <tr>
   <td><%= activity_definition.id %></td>
-    <td><%= activity_definition.name %></td>
+    <td><%= activity_definition.short_description %></td>
     <td><%= link_to 'Show', activity_definition %></td>
     <td><%= link_to 'Edit', edit_activity_definition_path(activity_definition) %></td>
     <td><%= link_to 'Destroy', activity_definition, method: :delete, data: { confirm: 'Are you sure?' } %></td>
