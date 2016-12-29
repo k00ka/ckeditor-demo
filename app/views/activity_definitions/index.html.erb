@@ -2,7 +2,8 @@
 
 <table>
   <tr>
-    <th>Html blob</th>
+    <th>ID</th>
+    <th>HTML blob</th>
     <th></th>
     <th></th>
     <th></th>
@@ -10,6 +11,7 @@
 
 <% @activity_definitions.each do |activity_definition| %>
   <tr>
+    <td><%= activity_definition.id %></td>
     <td><%= activity_definition.html_blob %></td>
     <td><%= link_to 'Show', activity_definition %></td>
     <td><%= link_to 'Edit', edit_activity_definition_path(activity_definition) %></td>
