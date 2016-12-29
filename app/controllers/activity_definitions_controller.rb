@@ -1,5 +1,5 @@
 class ActivityDefinitionsController < ApplicationController
-  before_filter :set_definition, only: [:edit, :show, :destroy]
+  before_filter :set_definition, only: [:update, :edit, :show, :destroy]
 
   def index
     @activity_definitions = ActivityDefinition.all
