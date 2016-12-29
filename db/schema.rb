@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20161229155149) do
+ActiveRecord::Schema.define(:version => 20161229202627) do
+
+  create_table "activities", :force => true do |t|
+    t.integer  "activity_definition_id"
+    t.text     "responses"
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
+  end
+
+  add_index "activities", ["activity_definition_id"], :name => "index_activities_on_activity_definition_id"
 
   create_table "activity_definitions", :force => true do |t|
     t.text     "html_blob"

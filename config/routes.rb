@@ -1,4 +1,7 @@
 CkeditorDemo::Application.routes.draw do
+  resources :activities
+
+
   resources :activity_definitions
   resources :activities
   root :to => 'activity_definitions#index'

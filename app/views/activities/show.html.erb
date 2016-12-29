@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Responses:</b>
+  <% (@activity.responses || []).each do |k,v| %>
+    <p><%= "#{k}: #{v}" %></p>
+  <% end %>
+</p>
+
+
+<%= link_to 'Edit', edit_activity_path(@activity) %> |
+<%= link_to 'Back', activities_path %>
