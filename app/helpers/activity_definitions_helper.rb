@@ -1,0 +1,2 @@
+module ActivityDefinitionsHelper
+end

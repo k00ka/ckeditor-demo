@@ -1,0 +1,23 @@
+<h1>Listing activity_definitions</h1>
+
+<table>
+  <tr>
+    <th>Html blob</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @activity_definitions.each do |activity_definition| %>
+  <tr>
+    <td><%= activity_definition.html_blob %></td>
+    <td><%= link_to 'Show', activity_definition %></td>
+    <td><%= link_to 'Edit', edit_activity_definition_path(activity_definition) %></td>
+    <td><%= link_to 'Destroy', activity_definition, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Activity definition', new_activity_definition_path %>
