@@ -1,6 +1,7 @@
 CkeditorDemo::Application.routes.draw do
   resources :activity_definitions
   resources :activities
+  root :to => 'activity_definitions#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
