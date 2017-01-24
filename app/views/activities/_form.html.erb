@@ -11,7 +11,7 @@
     </div>
   <% end %>
 
-  <%= render html: @activity.activity_html.html_safe %>
+  <%= activity_html(@activity).html_safe %>
 
   <div class="actions">
     <%= f.submit %>

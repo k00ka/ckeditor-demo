@@ -11,12 +11,9 @@
     </div>
   <% end %>
 
-  <%= @activity.activity_html.html_safe %>
+  <%= activity_html(@activity).html_safe %>
 
   <div class="actions">
-    <%= submit_tag("Enter") %>
+    <%= f.submit "Enter" %>
   </div>
 <% end %>
-
-<%= link_to 'Show', @activity %> |
-<%= link_to 'Back', activities_path %>
