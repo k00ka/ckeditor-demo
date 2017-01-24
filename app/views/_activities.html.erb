@@ -1,0 +1,666 @@
+<div class="well well-dark activities-link-class" id="rel-activities">
+  <div class="save-status"></div>
+  <h3 style="float:left">Activities :</h3>
+  <div style="float:right">Jump to:
+    <form method='get' id='jump-to' style="display:inline-block">
+      <select name="level" onChange="$('#jump-to').submit()">
+        <%= content_tag(:option, "0.0 - Limbo", value: "0.0", selected: "selected") if @level==0.0 %>
+        <%= content_tag(:option, "0.1 - Introduction: Welcome!", value: "0.1", selected: ("selected" if @level==0.1)) %>
+        <%= content_tag(:option, "0.2 - Introduction: Communicating on MentorCity", value: "0.2", selected: ("selected" if @level==0.2)) %>
+        <%= content_tag(:option, "0.3 - Introduction: Meet Your Mentor", value: "0.3", selected: ("selected" if @level==0.3)) %>
+        <%= content_tag(:option, "0.4 - Introduction: About Evaluation Questions", value: "0.4", selected: ("selected" if @level==0.4)) %>
+        <%= content_tag(:option, "0.5 - Introduction: Let's Get Started", value: "0.5", selected: ("selected" if @level==0.5)) %>
+        <%= content_tag(:option, "0.6 - Introduction: Evaluation Questions", value: "0.6", selected: ("selected" if @level==0.6)) if current_user == @mentee %>
+        <%= content_tag(:option, "1.1 - Activity 1.1: Study Habits", value: "1.1", selected: ("selected" if @level==1.1)) %>
+        <%= content_tag(:option, "1.2 - Activity 1.2: Organization Tips", value: "1.2", selected: ("selected" if @level==1.2)) %>
+        <%= content_tag(:option, "1.3 - Activity 1.3: Plagiarism", value: "1.3", selected: ("selected" if @level==1.3)) %>
+        <%= content_tag(:option, "1.4 - Activity 1.4: Six Strategies for Learning", value: "1.4", selected: ("selected" if @level==1.4)) %>
+        <%= content_tag(:option, "1.5 - Activity 1.5: Preparing for Tests", value: "1.5", selected: ("selected" if @level==1.5)) %>
+        <%= content_tag(:option, "1.6 - Activity 1.6: Quest Completed", value: "1.6", selected: ("selected" if @level==1.6)) %>
+        <%= content_tag(:option, "1.7 - Unit 1: Evaluation Questions", value: "1.7", selected: ("selected" if @level==1.7)) if current_user == @mentee %>
+        <%= content_tag(:option, "99.9 - End of Units", value: "99.9", selected: ("selected" if @level==99.9)) %>
+      </select>
+    </form>
+  </div>
+  <div style="clear:both"></div>
+
+<script>
+$(function() {
+	$('.pop').on('click', function(event) {
+    event.preventDefault();
+		$('.preview').attr('src', $(this).find('img').attr('src'));
+		$('#modal').modal('show');
+		$('#modal').find('.modal-body').css({'max-height':'100%'});
+	});
+});
+</script>
+
+<% button_label = "Move to next activity" %>
+
+<% if @action %>
+  <%= simple_form_for @action, url: relationship_actions_path(@relationship), method: :post, class: 'form-horizontal' do |f| %>
+    <%= hidden_field_tag :level, @level %>
+    <%= hidden_field_tag :user_id, @user.id %>
+    <%= f.simple_fields_for :responses, OpenStruct.new(f.object.responses || {}) do |fp| %>
+      <h4 style="text-align:center">Rural eMentoring</h4>
+      <% case @level %>
+      <% when 0.1 %>
+        <h4 style="text-align:center">Introduction</h4>
+        <h5>0.1 – Welcome!</h5>
+        <p>Welcome to Rural eMentoring BC, or ReMBC, for short. This program matches you with a mentor who is a current post-secondary student. Your mentor could be anywhere in the province and attending any of the various programs offered at their school. Before we start, let’s look at these two words:</p>
+
+        <div style="text-align:center">
+        &#x2192; MENTOR (noun)<br>
+        An experienced and trusted adviser or guide.<br>
+        <br>
+        &#x2192; MENTORING (verb)<br>
+        To be a trusted advisor or guide to another person.<br>
+        </div>
+
+        <p>You will be working with your mentor for the duration of the program and they will help guide you through different topics and questions in this curriculum. This is your Personal Quest – it is your chance to ask questions about what you are interested in, explore different possibilities for after graduation, and to also find out more about what your mentor is doing and what their experiences have been.</p>
+
+        <div style="text-align:center">
+          <div style="text-align:left;display:inline-block;border:1px solid black"><div style="float:left"><a class="pop"><img src="/assets/custom/ubc/dr-adams.jpg"></a></div><div><p>“If you want the best out of life, you have to give your best. It's hard work. Follow your heart. Tell yourself you're going for it. Do it with courage, kindness and community mindedness.”</p><p>Dr. Evan Adams<br>Canadian medical doctor, actor, playwright, Chief Medical Officer for the First Nations Health Authority and member of the Tla'amin First Nation.</p><p>Read more here! <a href="https://www.viu.ca/news/aboriginal-students-learn-about-opportunities-malaspina" target="_blank">https://www.viu.ca/news/aboriginal-students-learn-about-opportunities-malaspina</a></p></div></div>
+        </div><div style="clear:both"></div>
+
+        <p>At the end of each activity there will be questions for you to discuss with your mentor.</p>
+        <p>These discussions can go back and forth and include new questions that you are interested in knowing more about.  Don’t be shy!</p>
+
+        <ul style="font-weight: 700; font-style: italic">
+          <li>Have you ever had a mentor before or have you ever mentored before? What was it like?</li>
+          <li>Are there any particular interests or goals you would like to explore?</li>
+        </ul>
+
+        <p>Once you have finished this activity, click below to learn more about Communicating on MentorCity.</p>
+      <% when 0.2 %>
+        <h4 style="text-align:center">Introduction</h4>
+        <h5>0.2 – Communicating on MentorCity</h5>
+
+        <h6>Communicating Online</h6>
+
+        <p>The majority of your communication with your mentor will take place within the Personal Quest. Areas with bolded and italicized text indicate that it is a section for you to discuss with your mentor. These sections are easy to find because there is a text box following these sections.</p>
+
+        <div style="border:1px solid black;margin:20px;padding:10px;background:#ccbbcc;font-weight:700">
+          <h6>*IMPORTANT*</h6>
+
+          <p>When discussing things with your mentor please do not share personal information like your last name, personal email, or phone number. This includes social media contact information such as Instagram, Twitter, Facebook, Snapchat etc. Communication with your mentor should only take place through the MentorCity platform or organized through your teacher and the ReMBC team. If you are unsure what content may or may not be appropriate to share, please ask your teacher first.</p>
+        </div>
+
+        <p>You and your mentor can share thoughts and ideas in the Quest without other people like friends and family seeing what you type. The only people who can see what you type are:
+        <ul>
+        <li>your mentor</li>
+        <li>your teacher</li>
+        <li>the eMentoring staff</li>
+        </ul>
+        </p>
+
+        <h6>Netiquette</h6>
+
+        <p>Remember to use good internet manners (called “internet etiquette” or netiquette) any time you post to the discussion with your mentor (and other social networking websites too).</p>
+
+        <div style="padding:4px;border:1px solid black;text-align:center;overflow:hidden">
+          <p>Digital Etiquette (video)<br>
+          <a href="https://www.brainpop.com/technology/digitalcitizenship/digitaletiquette/" target="_blank">https://www.brainpop.com/technology/digitalcitizenship/digitaletiquette/</a></p>
+        </div>
+
+        <p>Do the Digital Etiquette POPQuiz! (Do the review quiz version).<br>
+        <a href="https://www.brainpop.com/technology/computersandinternet/digitaletiquette/quiz/" target="_blank">https://www.brainpop.com/technology/computersandinternet/digitaletiquette/quiz/</a></p>
+
+        <p>Whenever you are on-line, stay safe and think about who will be able to see what you are sharing. Not everything is private and many things you post becomes part of your digital tattoo (also called your digital footprint).</p>
+
+        <p>Want a break? Play the game Stop that Post (<a href="http://www.nsteens.org/Games/StopThatPost" target="_blank">http://www.nsteens.org/Games/StopThatPost</a>) on NSTeens.org, a website of NetSmartz Workshop.</p>
+
+        <ul style="font-weight: 700; font-style: italic">
+          <li>Have you ever broken any netiquette rules? Have you ever experienced bad netiquette?</li>
+        </ul>
+
+        <p>Once you have finished this activity, click below to learn more about your Mentor.</p>
+      <% when 0.3 %>
+        <h4 style="text-align:center">Introduction</h4>
+        <h5>0.3 – Meet Your Mentor</h5>
+
+        <h6>Word Cloud</h6>
+
+        <div style="float:right;width:30%;margin-left:5px">
+          <div class="pop"><img src="/assets/custom/ubc/tagxedo.jpg"></div>
+        </div>
+        <p>This activity is for you and your mentor. Create a word cloud that tells a bit about who you are. Tagxedo (www.tagxedo.com) uses words, colours, shapes and fonts to create fun images.</p>
+
+        <p>Watch this video to get ideas for your word cloud and learn how to use Tagxedo:</p>
+
+        <div style="padding:4px;border:1px solid black;text-align:center;overflow:hidden">
+        <p>Tagxedo Presentation (2 videos)<br>
+        <a href="http://youtu.be/4z7qTziwMqQ" target="_blank">http://youtu.be/4z7qTziwMqQ</a><br>
+        <a href="http://youtu.be/rOciNkGzZUU" target="_blank">http://youtu.be/rOciNkGzZUU</a>
+        </div>
+
+        <div style="text-align:center"><div class="pop" style="width:100%;display:inline-block"><img src="/assets/custom/ubc/questions.jpg" style="width:80%"></div></div>
+
+        <p>Choose any of these questions to come up with words to put in your word cloud. You do
+        not have to do them all, and you can do them in any order. Don’t feel limited by the
+        questions. Add information you think is important but remember not to share any
+        personal information such as your address, phone number or school name. You should
+        have at least 20 words in your cloud. Be creative!</p>
+
+        <ul style="font-weight: 700; font-style: italic">
+          <li>Look at your word cloud. What words pop out to you the most? Pick three of the questions from above that you included in your word cloud and share them with your mentor. Did your mentor use any of the same questions?</li>
+          <li>Ask your mentor 3 questions based on the word cloud. Ask about anything - career, schooling, favourite TV show, etc.</li>
+        </ul>
+
+        <p>Once you have finished this activity, click below to learn more about evaluations.</p>
+      <% when 0.4 %>
+        <h4 style="text-align:center">Introduction</h4>
+        <h5>0.4 – About Evaluation Questions</h5>
+
+        <p>At the end of each unit, there will be a short series of questions for you, as the mentee, to answer. These questions help the ReMBC team understand things such as if the program is easy to follow, if your Personal Quest is interesting or helpful, how you feel about your relationship with your mentor, how you feel about certain classes, and if you are interested in careers in rural health care. Even though they appear on the screen below the activities, these questions can only be seen by you as the mentee. You must complete them before continuing on to the next section and your answers cannot be changed once you submit them. Read the questions carefully and honestly. If you do not understand a question, please ask your teacher for help!</p>
+
+        <p>Once you have finished this activity, click below to learn more.</p>
+      <% when 0.5 %>
+        <h4 style="text-align:center">Introduction</h4>
+        <h5>0.5 – Let’s Get Started!</h5>
+
+        <div style="float:right;width:30%;margin-left:5px">
+          <div class="pop"><img src="/assets/custom/ubc/success.jpg"></div>
+        </div>
+        <p>Congratulations on completing the Introduction unit! Now that you have met your mentor and completed the unit, you have a sense of what being in this program will be like. You know the guidelines and that there is an expectation that you will commit time towards doing the activities with your mentor.</p>
+
+        <ul style="font-weight: 700; font-style: italic">
+          <li>What topic or information did you find most useful in the Introduction?</li>
+        </ul>
+
+        <p>Once you have finished this activity, click below to complete your first evaluation.</p>
+      <% when 0.6 %>
+        <% if current_user == @mentee %>
+          <h4 style="text-align:center">Introduction</h4>
+          <h5>Evaluation Questions</h5>
+
+          <ol>
+            <li>What grade are you in?</li>
+            <select name="activity[responses][grade]"> <option value="7"> 7</option> <option value="8"> 8</option> <option value="9"> 9</option> <option value="10"> 10</option> <option value="11"> 11</option> <option value="12"> 12</option> </select>
+          <li> What level of school do you see yourself finishing? Select what you most likely anticipate at this time.</li>
+          <select name="activity[responses][anticipated_grade]"><option value="high school">High school or less<option value="college">College<option value="trade school">Trade school<option value="undergraduate">Undergraduate university degree<option value="master's">Master’s degree<option value="medical">Medical degree<option value="phd">Doctorate degree (e.g. Ph.D)<option value="other">Other<option value="don't know">Don’t know</select>
+          <li> Look at each of the following careers. For each one, please rate how likely you would consider it. You may only rate ONE career as “highly likely”. You may rate the rest as any option.</li>
+          <table>
+          <tr><th>Healthcare Career</th>
+      <th width="10%">Not at all likely</th>
+      <th width="10%">Unlikely</th>
+      <th width="10%">Maybe</th>
+      <th width="10%">Likely</th>
+      <th width="10%">Highly likely</th>
+      </tr>
+          <tr><td>Counsellor</td>
+          <td><input type="radio" name="activity[responses][counsellor]" value="1"> 1</td>
+          <td><input type="radio" name="activity[responses][counsellor]" value="2"> 2</td>
+          <td><input type="radio" name="activity[responses][counsellor]" value="3"> 3</td>
+          <td><input type="radio" name="activity[responses][counsellor]" value="4"> 4</td>
+          <td><input type="radio" name="activity[responses][counsellor]" value="5"> 5</td>
+      </tr>
+          <tr><td>Dentist</td>
+          <td><input type="radio" name="activity[responses][dentist]" value="1"> 1</td>
+          <td><input type="radio" name="activity[responses][dentist]" value="2"> 2</td>
+          <td><input type="radio" name="activity[responses][dentist]" value="3"> 3</td>
+          <td><input type="radio" name="activity[responses][dentist]" value="4"> 4</td>
+          <td><input type="radio" name="activity[responses][dentist]" value="5"> 5</td>
+      </tr>
+          <tr><td>Dental Assistant</td>
+          <td><input type="radio" name="activity[responses][dental-assistant]" value="1"> 1</td>
+          <td><input type="radio" name="activity[responses][dental-assistant]" value="2"> 2</td>
+          <td><input type="radio" name="activity[responses][dental-assistant]" value="3"> 3</td>
+          <td><input type="radio" name="activity[responses][dental-assistant]" value="4"> 4</td>
+          <td><input type="radio" name="activity[responses][dental-assistant]" value="5"> 5</td>
+      </tr>
+          <tr><td>Dental Hygienist </td>
+          <td><input type="radio" name="activity[responses][dental-hygienist]" value="1"> 1</td>
+          <td><input type="radio" name="activity[responses][dental-hygienist]" value="2"> 2</td>
+          <td><input type="radio" name="activity[responses][dental-hygienist]" value="3"> 3</td>
+          <td><input type="radio" name="activity[responses][dental-hygienist]" value="4"> 4</td>
+          <td><input type="radio" name="activity[responses][dental-hygienist]" value="5"> 5</td>
+      </tr>
+          <tr><td>Dietitian</td>
+          <td><input type="radio" name="activity[responses][dietitian]" value="1"> 1</td>
+          <td><input type="radio" name="activity[responses][dietitian]" value="2"> 2</td>
+          <td><input type="radio" name="activity[responses][dietitian]" value="3"> 3</td>
+          <td><input type="radio" name="activity[responses][dietitian]" value="4"> 4</td>
+          <td><input type="radio" name="activity[responses][dietitian]" value="5"> 5</td>
+      </tr>
+          <tr><td>Doctor</td>
+          <td><input type="radio" name="activity[responses][doctor]" value="1"> 1</td>
+          <td><input type="radio" name="activity[responses][doctor]" value="2"> 2</td>
+          <td><input type="radio" name="activity[responses][doctor]" value="3"> 3</td>
+          <td><input type="radio" name="activity[responses][doctor]" value="4"> 4</td>
+          <td><input type="radio" name="activity[responses][doctor]" value="5"> 5</td>
+      </tr>
+          <tr><td>Environmental Health Office (Public Health Inspector)</td>
+          <td><input type="radio" name="activity[responses][public-health-inspector]" value="1"> 1</td>
+          <td><input type="radio" name="activity[responses][public-health-inspector]" value="2"> 2</td>
+          <td><input type="radio" name="activity[responses][public-health-inspector]" value="3"> 3</td>
+          <td><input type="radio" name="activity[responses][public-health-inspector]" value="4"> 4</td>
+          <td><input type="radio" name="activity[responses][public-health-inspector]" value="5"> 5</td>
+      </tr>
+          <tr><td>Health Care Assistant</td>
+          <td><input type="radio" name="activity[responses][health-care-assistant]" value="1"> 1</td>
+          <td><input type="radio" name="activity[responses][health-care-assistant]" value="2"> 2</td>
+          <td><input type="radio" name="activity[responses][health-care-assistant]" value="3"> 3</td>
+          <td><input type="radio" name="activity[responses][health-care-assistant]" value="4"> 4</td>
+          <td><input type="radio" name="activity[responses][health-care-assistant]" value="5"> 5</td>
+      </tr>
+          <tr><td>Medical Laboratory Technologist</td>
+          <td><input type="radio" name="activity[responses][medical-laboratory-technologist]" value="1"> 1</td>
+          <td><input type="radio" name="activity[responses][medical-laboratory-technologist]" value="2"> 2</td>
+          <td><input type="radio" name="activity[responses][medical-laboratory-technologist]" value="3"> 3</td>
+          <td><input type="radio" name="activity[responses][medical-laboratory-technologist]" value="4"> 4</td>
+          <td><input type="radio" name="activity[responses][medical-laboratory-technologist]" value="5"> 5</td>
+      </tr>
+          <tr><td>Medical Office Assistant</td>
+          <td><input type="radio" name="activity[responses][medical-office-assistant]" value="1"> 1</td>
+          <td><input type="radio" name="activity[responses][medical-office-assistant]" value="2"> 2</td>
+          <td><input type="radio" name="activity[responses][medical-office-assistant]" value="3"> 3</td>
+          <td><input type="radio" name="activity[responses][medical-office-assistant]" value="4"> 4</td>
+          <td><input type="radio" name="activity[responses][medical-office-assistant]" value="5"> 5</td>
+      </tr>
+          <tr><td>Imaging technologist (radiographer, ultrasonographer)</td>
+          <td><input type="radio" name="activity[responses][imaging-technologist]" value="1"> 1</td>
+          <td><input type="radio" name="activity[responses][imaging-technologist]" value="2"> 2</td>
+          <td><input type="radio" name="activity[responses][imaging-technologist]" value="3"> 3</td>
+          <td><input type="radio" name="activity[responses][imaging-technologist]" value="4"> 4</td>
+          <td><input type="radio" name="activity[responses][imaging-technologist]" value="5"> 5</td>
+      </tr>
+          <tr><td>Midwife</td>
+          <td><input type="radio" name="activity[responses][midwife]" value="1"> 1</td>
+          <td><input type="radio" name="activity[responses][midwife]" value="2"> 2</td>
+          <td><input type="radio" name="activity[responses][midwife]" value="3"> 3</td>
+          <td><input type="radio" name="activity[responses][midwife]" value="4"> 4</td>
+          <td><input type="radio" name="activity[responses][midwife]" value="5"> 5</td>
+      </tr>
+          <tr><td>Mental Health and Addictions Worker</td>
+          <td><input type="radio" name="activity[responses][mental-health-and-addictions-worker]" value="1"> 1</td>
+          <td><input type="radio" name="activity[responses][mental-health-and-addictions-worker]" value="2"> 2</td>
+          <td><input type="radio" name="activity[responses][mental-health-and-addictions-worker]" value="3"> 3</td>
+          <td><input type="radio" name="activity[responses][mental-health-and-addictions-worker]" value="4"> 4</td>
+          <td><input type="radio" name="activity[responses][mental-health-and-addictions-worker]" value="5"> 5</td>
+      </tr>
+          <tr><td>Licensed Practical Nurse</td>
+          <td><input type="radio" name="activity[responses][licensed-practical-nurse]" value="1"> 1</td>
+          <td><input type="radio" name="activity[responses][licensed-practical-nurse]" value="2"> 2</td>
+          <td><input type="radio" name="activity[responses][licensed-practical-nurse]" value="3"> 3</td>
+          <td><input type="radio" name="activity[responses][licensed-practical-nurse]" value="4"> 4</td>
+          <td><input type="radio" name="activity[responses][licensed-practical-nurse]" value="5"> 5</td>
+      </tr>
+          <tr><td>Registered Nurse</td>
+          <td><input type="radio" name="activity[responses][registered-nurse]" value="1"> 1</td>
+          <td><input type="radio" name="activity[responses][registered-nurse]" value="2"> 2</td>
+          <td><input type="radio" name="activity[responses][registered-nurse]" value="3"> 3</td>
+          <td><input type="radio" name="activity[responses][registered-nurse]" value="4"> 4</td>
+          <td><input type="radio" name="activity[responses][registered-nurse]" value="5"> 5</td>
+      </tr>
+          <tr><td>Nurse Practitioner</td>
+          <td><input type="radio" name="activity[responses][nurse-practitioner]" value="1"> 1</td>
+          <td><input type="radio" name="activity[responses][nurse-practitioner]" value="2"> 2</td>
+          <td><input type="radio" name="activity[responses][nurse-practitioner]" value="3"> 3</td>
+          <td><input type="radio" name="activity[responses][nurse-practitioner]" value="4"> 4</td>
+          <td><input type="radio" name="activity[responses][nurse-practitioner]" value="5"> 5</td>
+      </tr>
+          <tr><td>Occupational Therapist</td>
+          <td><input type="radio" name="activity[responses][occupational therapist]" value="1"> 1</td>
+          <td><input type="radio" name="activity[responses][occupational therapist]" value="2"> 2</td>
+          <td><input type="radio" name="activity[responses][occupational therapist]" value="3"> 3</td>
+          <td><input type="radio" name="activity[responses][occupational therapist]" value="4"> 4</td>
+          <td><input type="radio" name="activity[responses][occupational therapist]" value="5"> 5</td>
+      </tr>
+          <tr><td>Paramedic</td>
+          <td><input type="radio" name="activity[responses][paramedic]" value="1"> 1</td>
+          <td><input type="radio" name="activity[responses][paramedic]" value="2"> 2</td>
+          <td><input type="radio" name="activity[responses][paramedic]" value="3"> 3</td>
+          <td><input type="radio" name="activity[responses][paramedic]" value="4"> 4</td>
+          <td><input type="radio" name="activity[responses][paramedic]" value="5"> 5</td>
+      </tr>
+          <tr><td>Pharmacist</td>
+          <td><input type="radio" name="activity[responses][pharmacist]" value="1"> 1</td>
+          <td><input type="radio" name="activity[responses][pharmacist]" value="2"> 2</td>
+          <td><input type="radio" name="activity[responses][pharmacist]" value="3"> 3</td>
+          <td><input type="radio" name="activity[responses][pharmacist]" value="4"> 4</td>
+          <td><input type="radio" name="activity[responses][pharmacist]" value="5"> 5</td>
+      </tr>
+          <tr><td>Pharmacy Technician</td>
+          <td><input type="radio" name="activity[responses][pharmacy-technician]" value="1"> 1</td>
+          <td><input type="radio" name="activity[responses][pharmacy-technician]" value="2"> 2</td>
+          <td><input type="radio" name="activity[responses][pharmacy-technician]" value="3"> 3</td>
+          <td><input type="radio" name="activity[responses][pharmacy-technician]" value="4"> 4</td>
+          <td><input type="radio" name="activity[responses][pharmacy-technician]" value="5"> 5</td>
+      </tr>
+          <tr><td>Physiotherapist</td>
+          <td><input type="radio" name="activity[responses][physiotherapist]" value="1"> 1</td>
+          <td><input type="radio" name="activity[responses][physiotherapist]" value="2"> 2</td>
+          <td><input type="radio" name="activity[responses][physiotherapist]" value="3"> 3</td>
+          <td><input type="radio" name="activity[responses][physiotherapist]" value="4"> 4</td>
+          <td><input type="radio" name="activity[responses][physiotherapist]" value="5"> 5</td>
+      </tr>
+          <tr><td>Psychologist</td>
+          <td><input type="radio" name="activity[responses][psychologist]" value="1"> 1</td>
+          <td><input type="radio" name="activity[responses][psychologist]" value="2"> 2</td>
+          <td><input type="radio" name="activity[responses][psychologist]" value="3"> 3</td>
+          <td><input type="radio" name="activity[responses][psychologist]" value="4"> 4</td>
+          <td><input type="radio" name="activity[responses][psychologist]" value="5"> 5</td>
+      </tr>
+          <tr><td>Social Worker</td>
+          <td><input type="radio" name="activity[responses][social-worker]" value="1"> 1</td>
+          <td><input type="radio" name="activity[responses][social-worker]" value="2"> 2</td>
+          <td><input type="radio" name="activity[responses][social-worker]" value="3"> 3</td>
+          <td><input type="radio" name="activity[responses][social-worker]" value="4"> 4</td>
+          <td><input type="radio" name="activity[responses][social-worker]" value="5"> 5</td>
+      </tr>
+          <tr><td>Speech-Language Pathologist</td>
+          <td><input type="radio" name="activity[responses][speech-language-pathologist]" value="1"> 1</td>
+          <td><input type="radio" name="activity[responses][speech-language-pathologist]" value="2"> 2</td>
+          <td><input type="radio" name="activity[responses][speech-language-pathologist]" value="3"> 3</td>
+          <td><input type="radio" name="activity[responses][speech-language-pathologist]" value="4"> 4</td>
+          <td><input type="radio" name="activity[responses][speech-language-pathologist]" value="5"> 5</td>
+      </tr>
+          <tr><td>Other not listed</td>
+          <td><input type="radio" name="activity[responses][other]" value="1"> 1</td>
+          <td><input type="radio" name="activity[responses][other]" value="2"> 2</td>
+          <td><input type="radio" name="activity[responses][other]" value="3"> 3</td>
+          <td><input type="radio" name="activity[responses][other]" value="4"> 4</td>
+          <td><input type="radio" name="activity[responses][other]" value="5"> 5</td>
+      </tr>
+      </table>
+
+      <p>For the next 6 questions, think about the one career you just rated as “Highly Likely” in the previous question. We are going to ask you questions about this next. We use the term “non-urban community” and to help you understand the questions better, think about this term meaning any place outside a big city like Vancouver, Victoria, Prince George or Kelowna. If you need help understanding these questions, you can ask your teacher for help!</p>
+      <li>How strongly you would like to work in a big city?</li>
+      <select name="activity[responses][like-work-in-big-city]" class="input-xxlarge"><option value="all">I can only see myself working in a city</option><option value="most">I am very keen to work in a city</option><option value="some">I intend to spend some of my career working in a city</option><option value="none">I have no intention to work in the city any longer than I have to</option></select>
+      <li>How strongly you would like to work in a “non-urban community” (anywhere in the world – not just British Columbia)?</li>
+      <select name="activity[responses][like-work-in-non-urban]" class="input-xxlarge"><option value="all">I definitely intend to take up a career in a non-urban community</option><option value="some">I would like to spend some of my career in a non-urban community</option><option value="consider">I might consider working in a non-urban community</option><option value="none">I have absolutely no intention to work in a non-urban community</option></select>
+      <li>Think of the career you rated as “Highly Likely”. On a scale from 1 to 9, how much of the education after high school that you need for your career is available in non-urban communities in British Columbia?</li>
+      <input type="radio" name="activity[responses][available-non-urban-education]" value="1"> 1 (none)<br>
+      <input type="radio" name="activity[responses][available-non-urban-education]" value="2"> 2<br>
+      <input type="radio" name="activity[responses][available-non-urban-education]" value="3"> 3 (limited)<br>
+      <input type="radio" name="activity[responses][available-non-urban-education]" value="4"> 4<br>
+      <input type="radio" name="activity[responses][available-non-urban-education]" value="5"> 5 (some)<br>
+      <input type="radio" name="activity[responses][available-non-urban-education]" value="6"> 6<br>
+      <input type="radio" name="activity[responses][available-non-urban-education]" value="7"> 7 (most)<br>
+      <input type="radio" name="activity[responses][available-non-urban-education]" value="8"> 8<br>
+      <input type="radio" name="activity[responses][available-non-urban-education]" value="9"> 9 (all)<br>
+          <br>
+
+          <li>Think of the career you rated as “Highly Likely”. On a scale from 1 to 9, how much of the education would you take in a non-urban community?</li>
+          <input type="radio" name="activity[responses][expected-non-urban-education]" value="1"> 1 (none)<br>
+          <input type="radio" name="activity[responses][expected-non-urban-education]" value="2"> 2<br>
+          <input type="radio" name="activity[responses][expected-non-urban-education]" value="3"> 3 (limited)<br>
+          <input type="radio" name="activity[responses][expected-non-urban-education]" value="4"> 4<br>
+          <input type="radio" name="activity[responses][expected-non-urban-education]" value="5"> 5 (some)<br>
+          <input type="radio" name="activity[responses][expected-non-urban-education]" value="6"> 6<br>
+          <input type="radio" name="activity[responses][expected-non-urban-education]" value="7"> 7 (most)<br>
+          <input type="radio" name="activity[responses][expected-non-urban-education]" value="8"> 8<br>
+          <input type="radio" name="activity[responses][expected-non-urban-education]" value="9"> 9 (all)<br>
+          <br>
+
+          <p>In many different health careers, there are different types of specialization that healthcare professionals can be. For example, a doctor one can be more of a generalist (e.g., general family physician or general surgeon) or more of a specialist (cardiac surgeon or immunologist).<br>
+          In other areas like radiography, the imaging technologist can provide general X-Ray, or do more specialist imaging services like be a technologist for an MRI or CT scanner.</p>
+          <li>How likely do you believe it is that a non-urban hospital or health community centre will have the resources to support your chosen degree of specialization?</li>
+            <input type="radio" name="activity[responses][resources-to-support-specialization]" value="1"> 1 (not likely at all)<br>
+            <input type="radio" name="activity[responses][resources-to-support-specialization]" value="2"> 2<br>
+            <input type="radio" name="activity[responses][resources-to-support-specialization]" value="3"> 3<br>
+            <input type="radio" name="activity[responses][resources-to-support-specialization]" value="4"> 4<br>
+            <input type="radio" name="activity[responses][resources-to-support-specialization]" value="5"> 5 (fairly likely)<br>
+            <input type="radio" name="activity[responses][resources-to-support-specialization]" value="6"> 6<br>
+            <input type="radio" name="activity[responses][resources-to-support-specialization]" value="7"> 7<br>
+            <input type="radio" name="activity[responses][resources-to-support-specialization]" value="8"> 8<br>
+            <input type="radio" name="activity[responses][resources-to-support-specialization]" value="9"> 9 (absolutely likely)<br>
+          <br>
+
+          <li>Considering all things, how easy would living and working in a non-urban community be for you?</li>
+          <input type="radio" name="activity[responses][ease-of-living-in-non-urban]" value="1"> 1 (extremely difficult)<br>
+          <input type="radio" name="activity[responses][ease-of-living-in-non-urban]" value="2"> 2<br>
+          <input type="radio" name="activity[responses][ease-of-living-in-non-urban]" value="3"> 3<br>
+          <input type="radio" name="activity[responses][ease-of-living-in-non-urban]" value="4"> 4<br>
+          <input type="radio" name="activity[responses][ease-of-living-in-non-urban]" value="5"> 5<br>
+          <input type="radio" name="activity[responses][ease-of-living-in-non-urban]" value="6"> 6<br>
+          <input type="radio" name="activity[responses][ease-of-living-in-non-urban]" value="7"> 7<br>
+          <input type="radio" name="activity[responses][ease-of-living-in-non-urban]" value="8"> 8<br>
+          <input type="radio" name="activity[responses][ease-of-living-in-non-urban]" value="9"> 9 (extremely easy)<br>
+          <br>
+
+
+          <li>How many years have you lived in a non-urban community?</li>
+          <select name="activity[responses][year-lived-in-non-urban]"><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19"></select>
+
+          <li>I know where to go for help with problems.</li>
+          <input type="radio" name="activity[responses][can-find-help]" value="no"> Not true at all<br>
+          <input type="radio" name="activity[responses][can-find-help]" value="unlikely"> Not very true<br>
+          <input type="radio" name="activity[responses][can-find-help]" value="likely"> Sort of true<br>
+          <input type="radio" name="activity[responses][can-find-help]" value="certain"> Very true<br>
+          <br>
+
+          <li>When I need help I find someone to talk with.</li>
+          <input type="radio" name="activity[responses][seek-help]" value="no"> Not true at all<br>
+          <input type="radio" name="activity[responses][seek-help]" value="unlikely"> Not very true<br>
+          <input type="radio" name="activity[responses][seek-help]" value="likely"> Sort of true<br>
+          <input type="radio" name="activity[responses][seek-help]" value="certain"> Very true<br>
+          <br>
+
+          <% button_label = "Save and move to next unit" %>
+        <% end %>
+
+      <% when 1.1 %>
+        <h4 style="text-align:center">Unit 1 - Study Habits</h4>
+        <h5>Activity 1.1 – Learning Style</h5>
+
+        <div class="pop"><img src="/assets/custom/ubc/types-of-learner.jpg" width="50%" style="float:right;margin:5px"></div>
+        <p>In this unit, you will be discussing study habits to help us in school. You and your mentor will complete activities about learning styles and organization tips. Other questions will explore learning strategies and plagiarism.</p>
+
+        <p>Everybody learns differently. The more we understand the ways we learn, the more we can help ourselves be successful.</p>
+
+        <p>This is an activity for you and your mentor:</p>
+
+        <div style="padding:4px;border:1px solid black;text-align:center;overflow:hidden">
+          <p>Finding Out Your Learning Style (video)<br>
+          <a href="https://www.youtube.com/watch?v=-Jwz_h0zXsY" target="_blank">https://www.youtube.com/watch?v=-Jwz_h0zXsY</a></p>
+        </div>
+
+        <p>The VARK (Visual, Auditory, Read/Write, Kinesthetic) learning style has four different styles of learning. Usually we are a combination of these styles.</p>
+
+        <p>VARK Types of Learners</p>
+        <ul>
+          <li><a class="pop"><img style="display:none" src="/assets/custom/ubc/visual-learners.png">Visual Learners</a></li>
+          <li><a class="pop"><img style="display:none" src="/assets/custom/ubc/aural-learners.png">Aural Learners</a></li>
+          <li><a class="pop"><img style="display:none" src="/assets/custom/ubc/read-write-learners.png">Read/Write Learners</a></li>
+          <li><a class="pop"><img style="display:none" src="/assets/custom/ubc/kinesthetic-learners.png">Kinesthetic Learners</a></li>
+        </ul>
+
+
+        <p>Look at the Types of Learners documents and the VARK help sheets to learn more.<br>
+        (<a href="http://vark-learn.com/strategies/?p=helpsheets" target="_blank">http://vark-learn.com/strategies/?p=helpsheets</a>)</p>
+
+        <ul style="font-weight: 700; font-style: italic">
+          <li>Do the VARK questionnaire to find out what type of learner you are. Share your results.</li>
+          <li>Do you and your mentor have similar learning styles? Share the learning technique you feel works best for you.</li>
+        </ul>
+
+        <p>Once you have finished this activity, click below to learn more about organization.</p>
+      <% when 1.2 %>
+        <h4 style="text-align:center">Unit 1 - Study Habits</h4>
+        <h5>Activity 1.2 – Organization Tips</h5>
+
+        <p>To be successful in school, there are tips and tools everyone needs to learn.</p>
+
+        <p>Read Your Binder: <a href="/custom/ubc/binder.pdf">Organizing the Way to Success</a>. Try using the tips to reorganize one of your school binders.</p>
+
+        <ul style="font-weight: 700; font-style: italic">
+          <li>What do you do to keep your binder organized?</li>
+          <li>What do you need to work on to get your binder into shape?</li>
+        </ul>
+
+        <p>Once you have finished this activity, click below to learn more about study habits.</p>
+      <% when 1.3 %>
+        <h4 style="text-align:center">Unit 1 - Study Habits</h4>
+        <h5>Activity 1.3 – Plagiarism</h5>
+
+        <p>Plagiarism is a type of cheating. You must always cite, or give credit, to the information sources you use. This means any written work, such as essays, projects, and websites. Plagiarism is a problem in all grades and in college and university.</p>
+
+        <div style="padding:4px;border:1px solid black;text-align:center;overflow:hidden">
+          <p>What is Plagiarism<br>
+          <a href="https://youtu.be/GMnI1sdNOIg" target="_blank">https://youtu.be/GMnI1sdNOIg</a></p>
+        </div>
+
+        <p>Read Chris’s story on how to avoid plagiarism.<br>
+        (<a href="http://kidshealth.org/en/kids/plagiarism.htm" target="_blank">http://kidshealth.org/en/kids/plagiarism.htm</a>)</p>
+
+        <p>Post-secondary institutes take plagiarism very seriously. If you are caught plagiarizing, you can be kicked out of school. As well, your scholarships or bursaries could be cancelled. Students at Capilano University produced five short films about plagiarism.</p>
+
+        <div style="padding:4px;border:1px solid black;text-align:center;overflow:hidden">
+          <p>Stop Plagiarism<br>
+          <a href="https://youtu.be/eM4ITK0Ao2I" target="_blank">https://youtu.be/eM4ITK0Ao2I</a></p>
+        </div>
+        <br>
+        <ul style="font-weight: 700; font-style: italic">
+          <li>Tell each other about any examples of plagiarism you have seen in school. Talk about what you can do to avoid plagiarism and the consequences of using someone else’s work as your own.</li>
+        </ul>
+
+        <p>Once you have finished this activity, click below to learn more about strategies for learning.</p>
+      <% when 1.4 %>
+        <h4 style="text-align:center">Unit 1 - Study Habits</h4>
+        <h5>Activity 1.4 – Six Strategies for Learning</h5>
+
+        <p>Have you ever thought about what kind of strategies you use to help yourself be a better learner?</p>
+
+        <div style="padding:4px;border:1px solid black;text-align:center;overflow:hidden">
+          <p>6 tips to working smart (video)<br>
+          <a href="http://youtu.be/aCoCVPfkA2E" target="_blank">http://youtu.be/aCoCVPfkA2E</a></p>
+        </div>
+
+        <h6>Six Strategies for Better Learning:</h6>
+
+        <ol>
+          <li>Time Management - You already use a number of time management skills that you might not be aware of.</li>
+          <div style="padding:4px;border:1px solid black;text-align:center;overflow:hidden">
+            <p>Thinking Skills &amp; Video Games - Time Management (video)<br>
+            <a href="https://youtu.be/UgyMNw7Dqbo" target="_blank">https://youtu.be/UgyMNw7Dqbo</a></p>
+          </div>
+
+          <li>Homework.</li>
+
+          <li>Eating Healthy - “Teens need extra nutrients to support bone growth, hormonal changes, and
+          organ and tissue development, including the brain.” Check out Healthy Eating for Teens. (<a href="https://youtu.be/UgyMNw7Dqbo">http://www.aboutkidshealth.ca/En/HealthAZ/HealthandWellness/Nutrition/Pages/healthy-eating-for-teens.aspx</a>)
+
+          <li>Getting Enough Sleep - Read Teens and Sleep: Why you need it and how to get enough for tips on how to get a good night sleep. (<a href="https://youtu.be/UgyMNw7Dqbo">http://www.caringforkids.cps.ca/handouts/teens_and_sleep</a>)</li>
+
+          <p>If you want to know more, you could watch this video about the science of sleep.</p>
+
+        <div style="padding:4px;border:1px solid black;text-align:center;overflow:hidden">
+          <p>Inside the Teenage Brain: From Zzz’s to A’s<br>
+          <a href="http://www.pbs.org/wgbh/pages/frontline/video/flv/generic.html?s=frol02sfacq392&continuous=1 ">http://www.pbs.org/wgbh/pages/frontline/video/flv/generic.html?s=frol02sfacq392&continuous=1 </a></p>
+        </div>
+
+        <li>Being Involved.</li>
+        <li>Creating Balance.</li>
+        <br>
+        <ul style="font-weight: 700; font-style: italic">
+          <li>What skills do you need to work on to be a successful student?</li>
+          <li>What does “creating balance” mean to you? How does your mentor keep balance in their life?</li>
+        </ul>
+
+        <p>Once you have finished this activity, click below to learn more about preparing for tests.</p>
+      <% when 1.5 %>
+        <h4 style="text-align:center">Unit 1 - Study Habits</h4>
+        <h5>Activity 1.5 – Preparing for Tests</h5>
+
+        <p>How do you get ready for a test? It is important to learn how to study properly.</p>
+
+          <div style="padding:4px;border:1px solid black;text-align:center;overflow:hidden">
+            <p>8 Essential Study Hacks<br>
+            <a href="https://youtu.be/Q_KxqNawDtg">https://youtu.be/Q_KxqNawDtg</a></p>
+          </div>
+
+          <p>Flashcards are one technique for studying. Mnemonics (tricks we use to help us remember) are another. Depending on what your learning style is, you have many ways to study and help yourself remember. Check the VARK Types of Learners documents for more ideas. (<a href="http://vark-learn.com/strategies/?p=helpsheets" target="_blank">http://vark-learn.com/strategies/?p=helpsheets</a>)</p>
+
+          <p>Practicing (and more practicing) what you learn in class is the best way to do well on tests and exams. This requires that you start planning your study time before your test. Don’t forget to take 15 minutes break every 45 minutes and to give yourself a small reward for completing each task.</p>
+
+          <p>Read Studying for Tests for more tips and techniques. (<a href="http://kidshealth.org/en/teens/test-terror.html#">http://kidshealth.org/en/teens/test-terror.html#</a>)</p>
+
+        <ul style="font-weight: 700; font-style: italic">
+          <li>List all the techniques you already use when studying.</li>
+          <li>What new methods will you try now when you study?</li>
+        </ul>
+
+        <p>Once you have finished this activity, click below to learn more.</p>
+      <% when 1.6 %>
+        <h4 style="text-align:center">Unit 1 - Study Habits</h4>
+        <h5>1.6 – Quest Completed</h5>
+
+        <div style="float:right;width:30%;margin-left:5px">
+          <div class="pop"><img src="/assets/custom/ubc/success.jpg"></div>
+        </div>
+        <p>Congratulations on completing this unit! You should now have learned how some valuable tips on how to be successful in school. As well, you should have a collection of tools for learning, as well as an understanding of plagiarism.</p>
+
+        <ul style="font-weight: 700; font-style: italic">
+          <li>What topic or information did you find most useful in unit one?</li>
+        </ul>
+
+        <p>Once you have finished this activity, click below to complete the second evaluation.</p>
+      <% when 1.7 %>
+        <% if current_user == @mentee %>
+          <h4 style="text-align:center">Unit 1 - Study Habits</h4>
+          <h5>Evaluation Questions</h5>
+          <ol>
+            <li>Which of the following best describes the grades you got on your last report card?</li>
+              <input type="radio" name="activity[responses][grades-on-last-report]" value="A"> Almost all A’s<br>
+              <input type="radio" name="activity[responses][grades-on-last-report]" value="AtoB"> Mostly A’s and B’s<br>
+              <input type="radio" name="activity[responses][grades-on-last-report]" value="BtoC"> Mostly C’s and B’s<br>
+              <input type="radio" name="activity[responses][grades-on-last-report]" value="CtoC+"> Mostly C’s and C+’s<br>
+              <input type="radio" name="activity[responses][grades-on-last-report]" value="C-toF"> Mostly C-‘s or F’s<br>
+            <li>During the past 12 months, about how many times did you skip school or cut classes?</li>
+              <input type="radio" name="activity[responses][skip-school-last-year]" value="0"> 0 times<br>
+              <input type="radio" name="activity[responses][skip-school-last-year]" value="1-2"> 1-2 times<br>
+              <input type="radio" name="activity[responses][skip-school-last-year]" value="a-few-times"> A few times<br>
+              <input type="radio" name="activity[responses][skip-school-last-year]" value="once-a-month"> Once a month<br>
+              <input type="radio" name="activity[responses][skip-school-last-year]" value="once-a-week"> Once a week<br>
+              <input type="radio" name="activity[responses][skip-school-last-year]" value="more-than-once-a-week"> More than once a week<br>
+            <li>Do you enjoy Science class?</li>
+              <input type="radio" name="activity[responses][enjoy-science]" value="strongly-agree"> Strongly Agree<br>
+              <input type="radio" name="activity[responses][enjoy-science]" value="agree"> Agree<br>
+              <input type="radio" name="activity[responses][enjoy-science]" value="disagree"> Disagree<br>
+              <input type="radio" name="activity[responses][enjoy-science]" value="strongly-disagree"> Strongly Disagree<br>
+            <li>Do you enjoy Math class?</li>
+              <input type="radio" name="activity[responses][enjoy-math]" value="strongly-agree"> Strongly Agree<br>
+              <input type="radio" name="activity[responses][enjoy-math]" value="agree"> Agree<br>
+              <input type="radio" name="activity[responses][enjoy-math]" value="disagree"> Disagree<br>
+              <input type="radio" name="activity[responses][enjoy-math]" value="strongly-disagree"> Strongly Disagree<br>
+            <li>Do you enjoy English class?</li>
+              <input type="radio" name="activity[responses][enjoy-english]" value="strongly-agree"> Strongly Agree<br>
+              <input type="radio" name="activity[responses][enjoy-english]" value="agree"> Agree<br>
+              <input type="radio" name="activity[responses][enjoy-english]" value="disagree"> Disagree<br>
+              <input type="radio" name="activity[responses][enjoy-english]" value="strongly-disagree"> Strongly Disagree<br>
+            <li>Do you enjoy Social Studies class?</li>
+              <input type="radio" name="activity[responses][enjoy-social-studies]" value="strongly-agree"> Strongly Agree<br>
+              <input type="radio" name="activity[responses][enjoy-social-studies]" value="agree"> Agree<br>
+              <input type="radio" name="activity[responses][enjoy-social-studies]" value="disagree"> Disagree<br>
+              <input type="radio" name="activity[responses][enjoy-social-studies]" value="strongly-disagree"> Strongly Disagree<br>
+            <li>How quickly does your mentor answer your comments and questions in the activities?</li>
+              <input type="radio" name="activity[responses][mentor-response-days]" value="1"> 1 day or less<br>
+              <input type="radio" name="activity[responses][mentor-response-days]" value="1-2"> 1-2 days<br>
+              <input type="radio" name="activity[responses][mentor-response-days]" value="2+"> More than 2 days<br>
+
+          <% button_label = "Save and move to next activity" %>
+        <% end %>
+      <% when 99.9 %>
+        You have reached the end of the available activities. Check back again for new activities in the future.
+        <% button_label = nil %>
+      <% else %>
+        Oops.
+      <% end %>
+    <% end %>
+    <%= submit_tag(button_label, class: "btn btn-primary") if button_label %>
+  <% end %>
+<% else %>
+  There are no new activities at this time.<br>You may jump back to review completed activities using the dropdown above.
+<% end %>
+</div>
+
+  <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal"><span>Close x</span></button>
+        <img src="" class="preview" style="width:100%" >
+      </div>
+    </div>
+  </div>
